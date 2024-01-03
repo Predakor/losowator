@@ -1,16 +1,18 @@
-import { JSXElement, children } from "solid-js";
-import Wheel from "../components/Wheel";
+import { JSXElement } from "solid-js";
+import Header from "./Header/Header";
 
 interface Props {
   children: JSXElement;
-  name: string;
 }
+
 function Layout(props: Props) {
   return (
     <>
-      <header> this is header</header>
-      <main>{props.children}</main>
-      <footer> this is footer</footer>
+      <Header />
+      <main class="p-2">{props.children}</main>
+      <footer class="footer">
+        <p>this is footer</p>
+      </footer>
     </>
   );
 }
