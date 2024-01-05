@@ -1,5 +1,5 @@
 import { For, Show, createSignal } from "solid-js";
-import { Player } from "../../types/player";
+import { Player } from "types/player";
 
 interface Props {
   players: Player[];

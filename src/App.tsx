@@ -1,7 +1,8 @@
-import { For, Show, createSignal } from "solid-js";
+import Wheel from "@components/Wheel";
+import { Show, createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 import PlayerRow from "./components/PlayerRow/PlayerRow";
-import Wheel from "./components/Wheel";
+import SelectedTeams from "./components/SelectedTeams/SelectedTeams";
 import Layout from "./layout/Layout";
 import { randomNumber } from "./utils";
 
@@ -61,30 +62,7 @@ function App() {
               </button>
             </Show>
           </div>
-          <div>
-            <div>
-              <h2>Team 1</h2>
-              <For each={players}>
-                {(player) => (
-                  <Show when={player.team === "1"}>
-                    <p>{player.name}</p>
-                  </Show>
-                )}
-              </For>
-            </div>
-            <span class="divider">VS</span>
-            <div>
-              <h2>Team 2</h2>
-              <For each={players}>
-                {(player) => (
-                  <Show when={player.team === "2"}>
-                    <p>{player.name}</p>
-                  </Show>
-                )}
-              </For>
-            </div>
-          </div>
-          {/* <SelectedTeams players={players()} /> */}
+          <SelectedTeams players={players} />
         </div>
       </Layout>
     </>
