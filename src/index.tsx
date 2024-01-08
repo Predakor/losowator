@@ -1,4 +1,5 @@
 /* @refresh reload */
+import { TeamsContextProvider } from "context/TeamsContext/TeamsContext";
 import { render } from "solid-js/web";
 import App from "./App";
 import "./index.css";
@@ -11,4 +12,11 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   );
 }
 
-render(() => <App />, root!);
+render(
+  () => (
+    <TeamsContextProvider>
+      <App />
+    </TeamsContextProvider>
+  ),
+  root!
+);

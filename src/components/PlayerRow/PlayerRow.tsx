@@ -1,20 +1,12 @@
-import { For, Show, createSignal } from "solid-js";
-import { Player } from "types/player";
+import { useTeamsContext } from "context/TeamsContext/TeamsContext";
+import { For } from "solid-js";
 
-interface Props {
-  players: Player[];
-}
-
-function PlayerRow(props: Props) {
-  const [players, setPLayers] = createSignal(props.players);
+function PlayerRow() {
+  const [teams] = useTeamsContext();
   return (
-    <div class="">
-      <For each={players()}>
-        {(player) => (
-          <Show when={!player.team}>
-            <div>{player.name}</div>
-          </Show>
-        )}
+    <div class="flex gap-2 justify-between">
+      <For each={teams.availablePlayers}>
+        {(player) => <div>{player.name}</div>}
       </For>
     </div>
   );

@@ -1,36 +1,41 @@
-import { For, Show } from "solid-js";
+import { useTeamsContext } from "context/TeamsContext/TeamsContext";
+import { For, Show, createEffect } from "solid-js";
 import { Player } from "types/player";
 
-interface Props {
-  players: Player[];
-}
+function SelectedTeams() {
+  const [teams] = useTeamsContext();
 
-function SelectedTeams(props: Props) {
   return (
-    <div>
-      <div>
-        <h2>Team 1</h2>
-        <For each={props.players}>
-          {(player) => (
-            <Show when={player.team === "1"}>
-              <p>{player.name}</p>
-            </Show>
-          )}
-        </For>
-      </div>
-      <span class="divider">VS</span>
-      <div>
-        <h2>Team 2</h2>
-        <For each={props.players}>
-          {(player) => (
-            <Show when={player.team === "2"}>
-              <p>{player.name}</p>
-            </Show>
-          )}
-        </For>
-      </div>
+    <div class="">
+      <For each={teams.drawedTeams}>
+        {({ name, players }, i) => {
+          const teamName = name ?? `team ${players[0].name}`;
+          const moreTeamsToShow = teams.drawedTeams.length > i() + 1;
+          return (
+            <div>
+              <Team players={players} teamName={teamName} />
+              <Show when={moreTeamsToShow}>
+                <span class="divider">VS</span>
+              </Show>
+            </div>
+          );
+        }}
+      </For>
     </div>
   );
 }
 
+interface TeamProps {
+  teamName: string;
+  players: Player[];
+}
+
+function Team(props: TeamProps) {
+  return (
+    <div>
+      <h2 class="text-lg uppercase">{props.teamName}</h2>
+      <For each={props.players}>{(player) => <p>{player.name}</p>}</For>
+    </div>
+  );
+}
 export default SelectedTeams;
