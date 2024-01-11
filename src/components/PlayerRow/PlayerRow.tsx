@@ -4,7 +4,7 @@ import { For } from "solid-js";
 function PlayerRow() {
   const [teams] = useTeamsContext();
   return (
-    <div class="flex gap-2 justify-between">
+    <div class="flex justify-between gap-2">
       <For each={teams.availablePlayers}>
         {(player) => <div>{player.name}</div>}
       </For>

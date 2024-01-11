@@ -9,7 +9,9 @@ function Layout(props: Props) {
   return (
     <>
       <Header />
-      <main class="p-2">{props.children}</main>
+      <main class=" flex flex-1 flex-col items-center justify-around p-2">
+        {props.children}
+      </main>
       <footer class="footer">
         <p>this is footer</p>
       </footer>

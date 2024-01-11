@@ -6,22 +6,22 @@ function SelectedTeams() {
   const [teams] = useTeamsContext();
 
   return (
-    <>
-      <For each={teams.drawedTeams}>
-        {({ name, players }, i) => {
-          const teamName = name || `team ${players[0]?.name || i()}`;
-          const moreTeamsToShow = teams.drawedTeams.length > i() + 1;
-          return (
-            <div class="flex">
+    <For each={teams.drawedTeams}>
+      {({ name, players }, i) => {
+        const teamName = name || `team ${players[0]?.name || i() + 1}`;
+        const moreTeamsToShow = teams.drawedTeams.length > i() + 1;
+        return (
+          <>
+            <div class="grid grid-flow-col place-items-start justify-evenly">
               <Team players={players} teamName={teamName} />
-              <Show when={moreTeamsToShow}>
-                <span class="divider divider-horizontal">VS</span>
-              </Show>
             </div>
-          );
-        }}
-      </For>
-    </>
+            <Show when={moreTeamsToShow}>
+              <span class="divider md:divider-horizontal">VS</span>
+            </Show>
+          </>
+        );
+      }}
+    </For>
   );
 }
 
@@ -32,7 +32,7 @@ interface TeamProps {
 
 function Team(props: TeamProps) {
   return (
-    <div>
+    <div class="justify-self-center">
       <h2 class="text-lg uppercase">{props.teamName}</h2>
       <For each={props.players}>{(player) => <p>{player.name}</p>}</For>
     </div>
