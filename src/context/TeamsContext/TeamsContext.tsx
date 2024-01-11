@@ -8,6 +8,7 @@ import {
 import { createStore } from "solid-js/store";
 import { TeamsContextInterface } from "types/TeamsContextInterface";
 import { Player } from "types/player";
+import { createEmptyTeams, createPlayer } from "./TeamsUtils";
 
 interface TeamsContextProps {
   children: JSXElement;
@@ -33,7 +34,7 @@ const defaultValue: TeamsContextInterface = {
   availablePlayers: [],
   drawedTeams: [],
   turn: 0,
-  numberOfTeams: 3,
+  numberOfTeams: 2,
 };
 
 export const TeamsContext =
@@ -43,18 +44,12 @@ export function TeamsContextProvider(props: TeamsContextProps) {
   const [teams, setTeams] = createStore(props.value ?? defaultValue);
 
   const init = () => {
-    const initialDrawedTeams = new Array(teams.numberOfTeams).fill({
-      name: "",
-      players: [],
-    });
-
-    const initialAvailablePlayers = [...teams.players];
-
     setTeams({
-      availablePlayers: initialAvailablePlayers,
-      drawedTeams: initialDrawedTeams,
+      availablePlayers: [...teams.players],
+      drawedTeams: createEmptyTeams("", teams.numberOfTeams),
     });
   };
+
   init();
 
   const teamsActions: TeamsActions = {
@@ -88,17 +83,16 @@ export function TeamsContextProvider(props: TeamsContextProps) {
     },
 
     reset: () => {
-      setTeams("drawedTeams", (teams) =>
-        teams.map((drawedTeam) => ({ ...drawedTeam, players: [] })),
-      );
-      setTeams("availablePlayers", [...teams.players]);
+      const newDrawedTeams = createEmptyTeams("", teams.numberOfTeams);
+
+      setTeams({
+        drawedTeams: newDrawedTeams,
+        availablePlayers: [...teams.players],
+      });
     },
 
     addPlayer: (name) => {
-      const newPlayer = {
-        id: createUniqueId(),
-        name: name,
-      };
+      const newPlayer = createPlayer(name);
 
       setTeams("players", (oldPlayers) => [...oldPlayers, newPlayer]);
       setTeams("availablePlayers", (avaiblePlayers) => [
@@ -108,9 +102,18 @@ export function TeamsContextProvider(props: TeamsContextProps) {
     },
 
     removePlayer: (playerID) => {
-      setTeams("players", (players) =>
-        players.filter((player) => player.id !== playerID),
+      const filteredPlayers = teams.players.filter(
+        (player) => player.id !== playerID,
       );
+
+      const filteredAvaiablePlayers = teams.availablePlayers.filter(
+        (player) => player.id !== playerID,
+      );
+
+      setTeams({
+        players: filteredPlayers,
+        availablePlayers: filteredAvaiablePlayers,
+      });
     },
 
     editPlayer: (playerID, changes) => {
@@ -127,27 +130,8 @@ export function TeamsContextProvider(props: TeamsContextProps) {
     },
 
     changeNumberOfTeams: (size: number) => {
-      const { drawedTeams } = teams;
-
-      setTeams("numberOfTeams", size);
-
-      if (drawedTeams.length === size) {
-        return;
-      }
-
-      if (drawedTeams.length > size) {
-        setTeams("drawedTeams", (drawedTeams) =>
-          drawedTeams.toSpliced(0, size),
-        );
-        return;
-      }
-
-      const missingDrawedTeams = new Array(size - drawedTeams.length).fill({
-        name: "",
-        players: [],
-      });
-      const newDrawedTeams = [...drawedTeams, ...missingDrawedTeams];
-      setTeams("drawedTeams", newDrawedTeams);
+      const newTeams = new Array(size).fill({ name: "", players: [] });
+      setTeams({ numberOfTeams: size, drawedTeams: newTeams });
     },
   };
 

@@ -14,15 +14,23 @@ function PlayerOptions() {
     <>
       <For each={teams.players}>
         {(player) => (
-          <input
-            class="input my-1 w-full max-w-xs"
-            type="text"
-            value={player.name}
-            onInput={(e) => inputHandler(player.id, e.currentTarget.value)}
-          />
+          <div>
+            <input
+              class="input w-full max-w-xs"
+              type="text"
+              value={player.name}
+              onInput={(e) => inputHandler(player.id, e.currentTarget.value)}
+            />
+            <button
+              class="btn-ghost btn"
+              onClick={() => removePlayer(player.id)}
+            >
+              X
+            </button>
+          </div>
         )}
       </For>
-      <div class="join flex w-full gap-0 p-0">
+      <div class="join flex w-full ">
         <AddPlayer addHandler={addPlayer} />
       </div>
     </>
