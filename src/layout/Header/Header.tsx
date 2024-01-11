@@ -1,8 +1,12 @@
+import SideMenuDrawer from "@components/SideMenuDrawer/SideMenuDrawer";
+
 function Header() {
   return (
     <header class="navbar">
-      <div class="navbar-start">Lorem, ipsum dolor</div>
-      <div class="navbar-end">players</div>
+      <div class="flex-1">Lorem, ipsum dolor</div>
+      <div class="flex-none">
+        <SideMenuDrawer />
+      </div>
     </header>
   );
 }

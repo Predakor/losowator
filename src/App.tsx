@@ -7,14 +7,15 @@ import Layout from "./layout/Layout";
 function App() {
   return (
     <Layout>
-      <div class="grid h-full place-items-center justify-center">
+      <div class="flex flex-wrap justify-between gap-4">
         <PlayerRow />
+      </div>
+      <div class="flex flex-col items-center gap-4">
+        <Wheel />
+        <WheelButtons />
+      </div>
 
-        <div class="flex flex-col gap-2 items-center">
-          <Wheel />
-          <WheelButtons />
-        </div>
-
+      <div class="flex h-40 flex-col gap-4 md:flex-row">
         <SelectedTeams />
       </div>
     </Layout>

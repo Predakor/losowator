@@ -7,7 +7,8 @@ export interface DrawedTeam {
 
 export interface TeamsContextInterface {
   turn: number;
-  players: { name: string }[];
+  players: Player[];
   availablePlayers: Player[];
   drawedTeams: DrawedTeam[];
+  numberOfTeams: number;
 }
