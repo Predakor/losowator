@@ -10,12 +10,14 @@ function App() {
       <div class="grid h-full place-items-center justify-center">
         <PlayerRow />
 
-        <div class="flex flex-col gap-2 items-center">
+        <div class="flex flex-col items-center gap-2">
           <Wheel />
           <WheelButtons />
         </div>
 
-        <SelectedTeams />
+        <div class="flex gap-8">
+          <SelectedTeams />
+        </div>
       </div>
     </Layout>
   );

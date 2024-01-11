@@ -1,27 +1,27 @@
 import { useTeamsContext } from "context/TeamsContext/TeamsContext";
-import { For, Show, createEffect } from "solid-js";
+import { For, Show } from "solid-js";
 import { Player } from "types/player";
 
 function SelectedTeams() {
   const [teams] = useTeamsContext();
 
   return (
-    <div class="">
+    <>
       <For each={teams.drawedTeams}>
         {({ name, players }, i) => {
-          const teamName = name ?? `team ${players[0].name}`;
+          const teamName = name || `team ${players[0]?.name || i()}`;
           const moreTeamsToShow = teams.drawedTeams.length > i() + 1;
           return (
-            <div>
+            <div class="flex">
               <Team players={players} teamName={teamName} />
               <Show when={moreTeamsToShow}>
-                <span class="divider">VS</span>
+                <span class="divider divider-horizontal">VS</span>
               </Show>
             </div>
           );
         }}
       </For>
-    </div>
+    </>
   );
 }
 
