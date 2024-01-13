@@ -13,8 +13,10 @@
     "baseUrl": "./src/",
     "paths": {
       "@components/*": ["components/*"],
-      "@utils/*": ["utils/*"],
-      "@types/*": ["components/*"]
+      "@context/*": ["context/*"],
+      "@icons/*": ["icons/*"],
+      "@types/*": ["types/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }
