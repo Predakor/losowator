@@ -1,11 +1,11 @@
+import { TeamsContextProvider } from "@context/TeamsContext/TeamsContext";
 import { render } from "@solidjs/testing-library";
 import "@testing-library/jest-dom";
+import { describe, expect, it, vi } from "vitest";
 import App from "../App";
-import { describe, expect, it } from "vitest";
-import { TeamsContextProvider } from "@context/TeamsContext/TeamsContext";
 
 describe("App", () => {
-  it("should render the app", () => {
+  it("should render the app", (a) => {
     const { getByText } = render(() => (
       <TeamsContextProvider>
         <App />
@@ -13,4 +13,5 @@ describe("App", () => {
     ));
     expect(getByText("draw")).toBeInTheDocument();
   });
+  it("has valid store structure"), () => {};
 });
