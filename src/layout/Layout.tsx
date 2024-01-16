@@ -12,9 +12,9 @@ function Layout(props: Props) {
       <main class=" flex flex-1 flex-col items-center justify-around p-2">
         {props.children}
       </main>
-      <footer class="footer">
+      {/* <footer class="footer">
         <p>this is footer</p>
-      </footer>
+      </footer> */}
     </>
   );
 }

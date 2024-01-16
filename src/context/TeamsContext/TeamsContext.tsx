@@ -1,10 +1,5 @@
 import { randomNumber } from "@utils/index";
-import {
-  JSXElement,
-  createContext,
-  createUniqueId,
-  useContext,
-} from "solid-js";
+import { JSXElement, createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
 import { TeamsContextInterface } from "types/TeamsContextInterface";
 import { Player } from "types/player";
@@ -30,6 +25,12 @@ const defaultValue: TeamsContextInterface = {
     { id: "1", name: "user2" },
     { id: "2", name: "user3" },
     { id: "3", name: "user4" },
+    { id: "4", name: "user5" },
+    { id: "5", name: "user6" },
+    { id: "6", name: "user7" },
+    { id: "7", name: "user8" },
+    { id: "8", name: "user9" },
+    { id: "9", name: "user10" },
   ],
   availablePlayers: [],
   drawedTeams: [],
