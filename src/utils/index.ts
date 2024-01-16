@@ -12,3 +12,9 @@ export function debounce(func: Function, delay: number) {
     timeoutId = setTimeout(() => func.apply(this, args), delay);
   };
 }
+export function clamp(number: number, min: number, max: number) {
+  return Math.min(Math.max(number, min), max);
+}
+export function toRadians(degree: number) {
+  return (Math.PI / 180) * degree;
+}

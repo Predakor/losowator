@@ -6,14 +6,14 @@ interface Props {}
 
 function SideMenuDrawer({}: Props) {
   return (
-    <div class="drawer drawer-end">
+    <div class="drawer drawer-end z-50">
       <input id="my-drawer" type="checkbox" class="drawer-toggle" />
       <div class="drawer-content">
-        <label for="my-drawer" class="btn-ghost btn drawer-button">
+        <label for="my-drawer" class="btn btn-ghost drawer-button">
           <OptionsIcon size={24} />
         </label>
       </div>
-      <div class="drawer-side">
+      <div class="drawer-side  overflow-x-hidden">
         <label
           for="my-drawer"
           aria-label="close sidebar"
@@ -24,7 +24,7 @@ function SideMenuDrawer({}: Props) {
           <label
             for="my-drawer"
             aria-label="close sidebar"
-            class="btn-ghost btn drawer-button self-end"
+            class="btn btn-ghost drawer-button self-end"
           >
             <OptionsIconClosed size={24} />
           </label>
